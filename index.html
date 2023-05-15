@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8" />
+	<title>You&#39;ve been phished!</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<!-- <link href="https://b09-04.sysnet.ucsd.edu/phishresearch23/master.css" rel="stylesheet" /> -->
+	<!-- <link href="./master.css" rel="stylesheet" /> -->
+	<!-- <link href="https://tslp.s3.amazonaws.com/training/url_guide/css/master.css" rel="stylesheet" /> -->
+	<style type="text/css">.envelope.hide { transform: translateY(100%); }</style>
+  <style>
+  /* @charset "UTF-8"; */
+  /* http://meyerweb.com/eric/tools/css/reset/ 
+     v2.0 | 20110126
+     License: none (public domain)
+  
+     Modifications by: Brian Franco
+  */
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section, main {
+    display: block;
+  }
+  
+  body {
+    line-height: 1;
+  }
+  
+  ol, ul {
+    list-style: none;
+  }
+  
+  blockquote, q {
+    quotes: none;
+  }
+  
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
+  em {
+    font-style: italic;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a, span {
+    display: inline-block;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .cf:after {
+    content: " ";
+    clear: both;
+    display: block;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    background: #3f4c6b;
+    background: radial-gradient(ellipse at center, #abcabc 0%, #3f4c6b 100%);
+    font-family: Calibri, Tahoma, Arial, sans-serif;
+  }
+  @media all and (min-width: 41em) {
+    body {
+      min-height: 700px;
+    }
+  }
+  
+  a {
+    color: #0074d9;
+  }
+  a:hover {
+    color: #0d8eff;
+  }
+  
+  button {
+    border: 0 none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Calibri, Tahoma, Arial, sans-serif;
+    transition: all 0.3s;
+    -webkit-appearance: none;
+  }
+  
+  .init {
+    background: #485563;
+    background: linear-gradient(#485563 0%, #29323c 100%);
+    color: white;
+    display: table;
+    font-size: 28px;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+    text-align: center;
+    transition: -webkit-transform 1s;
+    transition: transform 1s;
+    width: 100%;
+    z-index: 3;
+  }
+  .init ~ div {
+    display: none;
+  }
+  .init .wrap {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .init img {
+    margin-bottom: 40px;
+    max-width: 100%;
+  }
+  .init p {
+    line-height: 160%;
+    margin: 0 auto 40px;
+    max-width: 750px;
+    padding: 0 20px;
+    text-shadow: 2px 2px 2px #403B4A;
+  }
+  .init p.sm {
+    font-size: 0.65em;
+  }
+  .init button {
+    background: #FAFAFA;
+    font-size: 30px;
+    min-width: 100px;
+    padding: 5px 10px;
+  }
+  .init.disable {
+    position: fixed;
+    -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  .init.disable ~ div {
+    display: block;
+  }
+  .init:not(.disable) ~ .letter {
+    -webkit-animation: none;
+            animation: none;
+  }
+  
+  .envelope {
+    background: #FFF6BF;
+    background: linear-gradient(#FFF6BF, #E0D491);
+    height: 140px;
+    margin-left: -400px;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transition: -webkit-transform 1.5s;
+    transition: transform 1.5s;
+    width: 800px;
+    z-index: 2;
+  }
+  .envelope:before {
+    content: "From: security@password-update.com \a Subject: Login Account Compromised";
+    font-family: Calibri, Tahoma, Arial, sans-serif;
+    font-size: 22px;
+    line-height: 160%;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    text-align: center;
+    white-space: pre-wrap;
+    width: 100%;
+  }
+  .envelope:after {
+    background: #d9ea18;
+    border: 2px solid white;
+    content: url(../stamp.png);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .envelope.hide {
+    -webkit-transform: translateY(200%);
+        -ms-transform: translateY(200%);
+            transform: translateY(200%);
+  }
+  
+  .letter {
+    -webkit-animation: none 1s;
+            animation: none 1s;
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: Georgia, serif;
+    font-size: 24px;
+    margin-left: -400px;
+    line-height: 180%;
+    padding: 20px 30px 40px;
+    position: absolute;
+    top: 410px;  /* top: 45%; */
+    left: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    transition: all 0.3s;
+    width: 800px;
+    z-index: 1;
+  }
+  .letter.fresh {
+    -webkit-animation: slide-in 2s 0.5s forwards;
+            animation: slide-in 2s 0.5s forwards;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  }
+  .letter.flagged:after {
+    opacity: 1;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  }
+  .letter em {
+    -webkit-animation: none 7s infinite;
+            animation: none 7s infinite;
+    display: inline-block;
+    font-style: normal;
+  }
+  .letter.shake {
+    -webkit-animation-name: shake;
+            animation-name: shake;
+  }
+  .letter.skew em {
+    -webkit-animation-name: skew;
+            animation-name: skew;
+  }
+  .letter.url .link {
+    position: relative;
+  }
+  .letter.url .link:after {
+    background: #DDD;
+    background: linear-gradient(#FAFAFA, #DDD);
+    border: 1px solid #CCC;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    color: #333;
+    content: attr(data-url);
+    font-size: 16px;
+    opacity: 0;
+    padding: 0 10px;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    transition: all 1s;
+    width: 400px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  }
+  .letter.url .link.hover:after {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  }
+  .letter > p .link {
+    color: #0074d9;
+    cursor: pointer;
+    text-decoration: underline;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+     -ms-user-select: none;
+         user-select: none;
+  }
+  .letter > p .link:hover {
+    color: #0d8eff;
+  }
+  .letter.sender > span {
+    -webkit-animation: flicker 3s infinite;
+            animation: flicker 3s infinite;
+  }
+  .letter.away {
+    -webkit-transform: translateY(-300%);
+        -ms-transform: translateY(-300%);
+            transform: translateY(-300%);
+    transition-duration: 1s;
+  }
+  .letter > span {
+    color: #999;
+    font-size: 18px;
+    transition: all 0.3s;
+  }
+  .letter .helper-txt {
+    color: white;
+    font-family: Calibri, Tahoma, Arial, sans-serif;
+    font-size: 24px;
+    min-height: 120px;
+    line-height: 140%;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    text-align: center;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.25);
+    width: 100%;
+  }
+  .letter .helper-txt p {
+    height: 100%;
+    opacity: 0;
+    padding: 0 10px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 1s;
+    width: 100%;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  }
+  .letter .helper-txt p.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  }
+  .letter .helper-txt p[class*="-wrong"]:before {
+    color: #FF4136;
+    content: '✖';
+    margin-right: 10px;
+  }
+  .letter .helper-txt p[class*="-right"]:before {
+    color: #2ECC40;
+    content: '✓ ';
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  .letter .helper-txt .h2 {
+    /* Irrelevant with new header div design */
+    color: white;
+    font-family: Calibri, Tahoma, Arial, sans-serif;
+    font-size: 42px;
+    position: absolute;
+    top: -400px; 
+    left: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  .letter .helper-txt a {
+    -webkit-animation: arrow 4s infinite ease;
+            animation: arrow 4s infinite ease;
+    color: #7fdbff;
+    cursor: pointer;
+  }
+  .letter .helper-txt br {
+    margin-bottom: 20px;
+  }
+  .letter .helper-txt button {
+    background: white;
+    color: #0074d9;
+    font-size: 28px;
+    margin: 0 5px;
+    min-width: 100px;
+    padding: 5px 10px;
+  }
+  .letter .helper-txt button:hover {
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  .letter .helper-txt .disb button {
+    background: #CCC;
+    color: #999;
+    pointer-events: none;
+  }
+  .letter .helper-txt .disb button:hover {
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+  }
+
+  .header p {
+    color: white; 
+    font-family: Calibri, Tahoma, Arial, sans-serif; 
+    font-size: 36px; 
+    position: absolute; 
+    top: -56px; 
+    left: 0; 
+    text-align: center; 
+    text-transform: uppercase; 
+    width: 100%;
+
+    transition: all 1s;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    pointer-events: none;
+  }
+  .header p.active {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    pointer-events: all;
+    z-index: 1;
+  }
+  
+  .summary {
+    color: white;
+    font-family: Calibri, Tahoma, Arial, sans-serif;
+    margin-left: -400px;
+    line-height: 180%;
+    opacity: 0;
+    padding: 20px 30px 40px;
+    pointer-events: none;
+    position: fixed;
+    text-align: center;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+    top: 47%;
+    left: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    transition: all 1s;
+    width: 800px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  }
+  .summary.active {
+    opacity: 1;
+    pointer-events: all;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  }
+  .summary h2 {
+    font-size: 42px;
+    line-height: 1.25;
+    /* line-height: 140%; */
+  }
+  .summary h4 {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    font-size: 30px;
+    margin: 0 auto;
+    padding: 5px;
+    width: 80%;
+  }
+  .summary button {
+    background: #2ECC40;
+    color: white;
+    font-size: 28px;
+    margin: 0 5px;
+    min-width: 200px;
+    padding: 15px 20px;
+  }
+  .summary button:hover {
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  .summary h2, .summary ul {
+    margin-bottom: 30px;
+  }
+  .summary ul {
+    overflow: hidden;
+  }
+  .summary li {
+    float: left;
+    width: 33%;
+  }
+  .summary li img {
+    margin-bottom: 10px;
+    max-width: 90%;
+  }
+  @media all and (max-height: 700px) and (min-width: 41em) {
+    .summary li img {
+      height: 150px;
+    }
+  }
+  @media all and (max-height: 600px) and (min-width: 41em) {
+    .summary li img {
+      height: 100px;
+    }
+  }
+  
+  /* --------------
+      ANIMATIONS
+  ----------------*/
+  @-webkit-keyframes shake {
+    0%, 100% {
+      -webkit-transform: translate3d(0, -50%, 0);
+              transform: translate3d(0, -50%, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: translate3d(-10px, -50%, 0);
+              transform: translate3d(-10px, -50%, 0);
+    }
+    20%, 40%, 60%, 80% {
+      -webkit-transform: translate3d(10px, -50%, 0);
+              transform: translate3d(10px, -50%, 0);
+    }
+  }
+  @keyframes shake {
+    0%, 100% {
+      -webkit-transform: translate3d(0, -50%, 0);
+              transform: translate3d(0, -50%, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: translate3d(-10px, -50%, 0);
+              transform: translate3d(-10px, -50%, 0);
+    }
+    20%, 40%, 60%, 80% {
+      -webkit-transform: translate3d(10px, -50%, 0);
+              transform: translate3d(10px, -50%, 0);
+    }
+  }
+  @-webkit-keyframes slide-in {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 350%, 0) scale(0.5);
+              transform: translate3d(0, 350%, 0) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translate3d(0, -50%, 0);
+              transform: translate3d(0, -50%, 0);
+    }
+  }
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 350%, 0) scale(0.5);
+              transform: translate3d(0, 350%, 0) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translate3d(0, -50%, 0);
+              transform: translate3d(0, -50%, 0);
+    }
+  }
+  @-webkit-keyframes arrow {
+    0%, 100% {
+      -webkit-transform: translate3d(0, 0%, 0);
+              transform: translate3d(0, 0%, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: translate3d(10%, 0%, 0);
+              transform: translate3d(10%, 0%, 0);
+    }
+    20%, 40%, 60%, 80% {
+      -webkit-transform: translate3d(-5%, 0%, 0);
+              transform: translate3d(-5%, 0%, 0);
+    }
+  }
+  @keyframes arrow {
+    0%, 100% {
+      -webkit-transform: translate3d(0, 0%, 0);
+              transform: translate3d(0, 0%, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: translate3d(10%, 0%, 0);
+              transform: translate3d(10%, 0%, 0);
+    }
+    20%, 40%, 60%, 80% {
+      -webkit-transform: translate3d(-5%, 0%, 0);
+              transform: translate3d(-5%, 0%, 0);
+    }
+  }
+  @-webkit-keyframes skew {
+    0%, 100% {
+      -webkit-transform: skewX(0deg);
+              transform: skewX(0deg);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: skewX(-20deg);
+              transform: skewX(-20deg);
+    }
+    20%, 40%, 60%, 80% {
+      -webkit-transform: skewX(20deg);
+              transform: skewX(20deg);
+    }
+  }
+  @keyframes skew {
+    0%, 100% {
+      -webkit-transform: skewX(0deg);
+              transform: skewX(0deg);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: skewX(-20deg);
+              transform: skewX(-20deg);
+    }
+    20%, 40%, 60%, 80% {
+      -webkit-transform: skewX(20deg);
+              transform: skewX(20deg);
+    }
+  }
+  @-webkit-keyframes flicker {
+    0%, 100% {
+      background: white;
+    }
+    50% {
+      background: #FFDC00;
+    }
+  }
+  @keyframes flicker {
+    0%, 100% {
+      background: white;
+    }
+    50% {
+      background: #FFDC00;
+    }
+  }
+  @-webkit-keyframes scale {
+    0%, 100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.1) rotate(10deg);
+              transform: scale(1.1) rotate(10deg);
+    }
+  }
+  @keyframes scale {
+    0%, 100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.1) rotate(10deg);
+              transform: scale(1.1) rotate(10deg);
+    }
+  }
+  /* --------------
+      Tablet
+  ----------------*/
+  @media all and (max-width: 50em) {
+    .letter, .envelope, .summary {
+      left: 5%;
+      margin-left: 0;
+      width: 90%;
+    }
+  }
+  /* --------------
+      Mobile
+  ----------------*/
+  @media all and (max-width: 40em) {
+    .init {
+      font-size: 16px;
+    }
+    .init img, .init p {
+      margin-bottom: 15px;
+    }
+    .init .wrap {
+      padding-top: 20px;
+    }
+  
+    .envelope:before {
+      font-size: 13px;
+    }
+    .envelope:after {
+      -webkit-transform: scale(0.7);
+          -ms-transform: scale(0.7);
+              transform: scale(0.7);
+      -webkit-transform-origin: right top;
+          -ms-transform-origin: right top;
+              transform-origin: right top;
+    }
+  
+    .letter {
+      padding: 10px 15px;
+      top: 45%;
+    }
+    
+    .summary {
+      top: 32%;
+    }
+
+    .header p {
+      font-size: 20px;
+    }
+
+    /* .letter, .summary {
+      top: 32%;
+    } */
+  
+    .letter, .envelope, .summary {
+      font-size: 13px;
+      left: 5%;
+      margin-left: 0;
+      width: 90%;
+    }
+  
+    .letter > span {
+      font-size: 16px;
+    }
+  
+    .letter.url a:after {
+      font-size: 10px;
+      left: 0;
+      width: auto;
+    }
+  
+    .letter .helper-txt {
+      top: 105%;
+      font-size: 14px;
+    }
+    .letter .helper-txt button {
+      font-size: 16px;
+      height: 45px;
+      margin: 10px 2px;
+    }
+    .letter .helper-txt .tone {
+      font-size: 14px !important;
+    }
+    .letter .helper-txt br {
+      margin-bottom: 40px;
+    }
+    .letter .helper-txt p a.fa {
+      display: block;
+      font-size: 40px;
+    }
+    .letter .helper-txt .h2 {
+      display: none;
+    }
+    .letter .helper-txt .tip strong {
+      display: none;
+    }
+    .letter .helper-txt .tip:before {
+      content: 'Tap and hold';
+      font-weight: bold;
+    }
+  
+    .summary {
+      top: 52%;
+    }
+    .summary h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .summary h4 {
+      font-size: 14px;
+    }
+  }
+  </style>
+
+
+<!--                      BEGIN GOOGLE ANALYTICS INSERT                         -->
+<!-- -------------------------------------------------------------------------- -->
+
+<!-- Redirect for Google Analytics Tracking URL -->
+<script>
+	var month = "01-2023"; // TODO(Change per month): which campaign month it is
+	var training_type = "contextual-interactive";  // TODO(Change per training): which phishing training the user got
+
+	// Redirect the webpage to the same URL w/ parameters for Google Analytics to work
+	if (!window.location.href.includes("utm_source")) {
+		// Get the GUID from training
+		var guid = new RegExp('guid=([^&#]*)').exec(window.location.href)[1];
+		var param_string = "&utm_source=" + month + "&utm_medium=" + training_type + "&utm_campaign=" + guid;
+		window.location.href = window.location.href + param_string;
+	}
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src=“https://www.googletagmanager.com/gtag/js?id=G-0SSME39132”></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0SSME39132');
+</script>
+
+<!-- -------------------------------------------------------------------------- -->
+<!--                      END GOOGLE ANALYTICS INSERT                         -->
+
+</head>
+<body>
+
+<div class="init">
+<div class="wrap">
+<!-- <p align="center" id="logo_object">&nbsp;</p> -->
+
+<p><strong>You&#39;ve been phished!</strong> But don&#39;t worry this was an approved phishing exercise sent by %COMPANY% to help you learn how to identify and avoid phishing attacks.</p>
+
+<p class="sm">Phishing can lead to security breaches that expose sensitive information to hackers. <br />We&#39;re going to walk you through 5 tips for spotting a suspicious email so you can avoid getting phished at work and at home.</p>
+<button>OK</button></div>
+</div>
+
+<div class="envelope">&nbsp;</div>
+
+
+<!-- ---------------------------------------------------------------  -->
+<!--                      BEGIN EXAMPLE PHISH                         -->
+
+<div class="fresh letter">
+	<!--[if lt IE 9]>
+		<div class="box">
+		<![endif]-->
+
+<div class="header">
+  <p class="sender">1. Check the sender</p>
+  <p class="tone">2. Check the greeting and tone</p>
+  <p class="spelling">3. Poor spelling or grammar</p>
+  <p class="urgent">4. Urgent call to action or threats</p>
+  <p class="action">5. Be careful of links and attachments</p>
+</div>
+    
+<span>From: security@password-update.com</span>
+
+<p>Hello,<br />
+	The IT department has found that your logon password has been stolen by a hacker! We need you to update your password with our database or it will be disabled, preventing you from accessing the system. Please go to the URL below and enter your current username and password before your access is revoked:<br />
+	<a href="http://www.phishbucket.com/thisisonlyatest">Click here to reset your password</a><br />
+	Thank you in advance for your cooperation.<br />
+	IT Support
+</p>
+
+<!--                      END EXAMPLE PHISH                           -->
+<!-- ---------------------------------------------------------------  -->
+
+<div class="helper-txt">
+<p class="whoa">Whoa! Before you click on that link, have you inspected this email closely? <a data-step="1" href="#">&rarr;</a></p>
+<!-- &rarr; is the small animated "next" arrow -->
+
+<!-- NEW: Tip 1, OLD: Tip 3 -->
+
+<p class="sender"> 
+<!-- <span class="h2">1. Check the sender</span> -->
+When you get an email from somebody you don&#39;t recognize, 
+or that Outlook identifies as a new sender, take a moment to examine it extra carefully.<br />
+Does this email&#39;s sender look new or unfamiliar? 
+<br /><br />
+<!-- Look at the sender&#39;s email address. Does it look familiar? Does the address look legitimate? Is the email address spelled correctly? Are there any extra or missing letters?<br /><br /> -->
+<button class="y">I know the sender.</button>
+<button>Who is this?</button></p>
+
+<p class="sender-wrong">No, this email address is completely made up and likely not real. However, hackers can spoof real email addresses, so it&#39;s important to double check if you see other signs of phishing.<a data-step="2" href="#">&rarr;</a></p>
+
+<p class="sender-right">Correct, the sender is made up and is using a false email address. <a data-step="2" href="#">&rarr;</a></p>
+
+<!-- Tip 2 -->
+
+<p class="tone">
+<!-- <span class="h2"; style="top: -610px">2. Check the greeting and tone</span> -->
+Your organization and colleagues should know your name and these days it&#39;s easy to personalize an email, so be cautious if there is a generic greeting.<br />
+<!-- Does the overall wording and “voice” seem a bit off? -->
+Does the email greet you by your name?
+<br /><br />
+<button class="y">Yes</button>
+<button>No</button></p>
+
+<p class="tone-right">Correct, this email has a generic greeting.<a data-step="3" href="#">&rarr;</a></p>
+<p class="tone-wrong">Incorrect! This email has a generic greeting.<a data-step="3" href="#">&rarr;</a></p>
+	
+<!-- NEW: Tip 3, OLD: Tip 4 -->
+
+<p class="spelling">
+<!-- <span class="h2"; style="top: -635px">3. Poor spelling or grammar</span> -->
+Attack emails often contain spelling or grammatical errors.<br />
+Does the email contain misspelled words or bad grammar?
+<br /><br />
+
+<button class="y">YES</button>
+<button>NO</button>
+</p>
+
+<p class="spelling-wrong">Incorrect. Although attacks often contain errors, this email does not have spelling or grammar mistakes. <a data-step="4" href="#">&rarr;</a></p>
+<p class="spelling-right">Correct! Although attacks often contain errors, this email does not have spelling or grammar mistakes. <a data-step="4" href="#">&rarr;</a></p>
+
+<!-- NEW: Tip 4, OLD: Tip 5 -->
+
+<p class="urgent">
+<!-- <span class="h2"; style="top: -610px">4. Urgent call to action or threats</span> -->
+Be suspicious of emails that claim you must take action immediately.<br />
+Is the email trying to scare or threaten you into doing something?
+<br /><br />
+<button class="y">NO</button>
+<button>YES</button>
+</p>
+
+<p class="urgent-wrong">Incorrect! This email is written in a sensational tone that contains threatening language.<a data-step="5" href="#">&rarr;</a></p>
+<p class="urgent-right">Correct, this email contains urgent and threatening language about modifying your password.<a data-step="5" href="#">&rarr;</a></p>
+
+<!-- NEW: Tip 5, OLD: Tip 1 -->
+
+<p class="action">
+  <!-- <span class="h2"; style="top: -610px">5. Be careful of links and attachments</span> -->
+Watch out for unsolicited emails that ask you to click on links or attachments.<br />
+Does the email contain any of these action items?
+<br /><br />
+<button class="y">NO</button>
+<button>YES</button>
+</p>
+
+<p class="action-right">Right, this email asks you to click on a URL. <a data-step="6" href="#">&rarr;</a></p>
+<p class="action-wrong">No! The email asks you to click a link, and clicking on it could compromise you machine or email. <a data-step="6" href="#">&rarr;</a></p>
+
+
+<!-- Conclusion + Summary -->
+
+<p class="done">With all this in mind, if anything in the mail seems suspicious, report it! <a class="flag" data-step="7" href="#">&rarr;</a></p>
+</div>
+</div>
+
+<div class="summary">
+<h2>So <strong>remember</strong>, if any of the following looks suspicious:</h2>
+
+<ul>
+	<li><img alt="Tone" src="https://tslp.s3.amazonaws.com/training/url_guide/ico_tone.png" />
+	<h4>Generic<br />Greeting</h4>
+	<!-- <br />
+	<h4>Spelling</h4>
+	<br />
+	<h4>Urgency</h4> -->
+	</li>
+	<li><img alt="Sender" src="https://tslp.s3.amazonaws.com/training/url_guide/ico_sender.png" />
+	<h4>Sender</h4>
+	</li>
+	<li><img alt="URL" src="https://tslp.s3.amazonaws.com/training/url_guide/ico_url.png" />
+	<h4>URL</h4>
+	</li>
+</ul>
+
+<ul>
+	<li>
+		<h4>Spelling</h4>
+	</li>
+	<li style="visibility: hidden">    
+		<h4></h4>
+	</li>
+	<li>
+		<h4>Urgency</h4>
+	</li>
+</ul>
+
+<h2><strong>Don&#39;t</strong> click! <strong>Report</strong> it! Stay SAFE!</h2>
+
+<form action="/training/acceptance" id="training-form" method="post"><button data-text="ack" type="submit">Got it!</button></form>
+</div>
+
+<div style="display:block; position: absolute; top: 30px; width: 100%; z-index: 3">
+	<!-- Image ratio is width 8x length -->
+<img src="https://b09-04.sysnet.ucsd.edu/resources/UCSDHealth-RGB.png" height="40" width="324" style="text-align:center; display:block; margin-right: auto; margin-left: auto;">
+</div>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script><!--[if lte IE 9]>
+<script src="https://tslp.s3.amazonaws.com/training/url_guide/js/jquery.jrumble.min.js"></script>
+<![endif]-->
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	var isIE = document.all && !window.atob;
+	var fadeN = 1;
+	if (isIE) fadeN = 100;
+
+	$('.init button').on('touchstart', function() {
+		if ( $('.tip strong').text() != "Press and hold" ) { $('.tip strong').text("Tap and hold"); }
+	});
+
+	// Make them hover URL again: anon function for event handler
+	$('.init button').on('click', function(e) {
+		e.preventDefault();
+		$('.init').addClass('disable');
+		$('.helper-txt p.whoa').addClass('active');
+
+		window.setTimeout(function() {
+			$('.envelope').addClass('hide');
+			$('.fresh.letter').removeClass('fresh');
+		}, 5000);
+	});
+
+	////////////////////////////////////////////
+	// FIRST PIECE OF ADVICE
+	////////////////////////////////////////////
+	
+	// Transition to 1st piece of advice
+	////////////////////////////////////////////
+	$('a[data-step=1]').on('click', function(e) {
+		e.preventDefault();
+		$('.envelope').addClass('hide');  // in case button is clicked before the above timer
+		$('.fresh.letter').removeClass('fresh');
+		$('.helper-txt p.active').removeClass('active');
+		window.setTimeout(function() {
+      // Show the advice header
+			$('.header p.sender').addClass('active');
+			$('.header').addClass('sender');
+
+      // Show the advice body
+			$('.helper-txt p.sender').addClass('active');
+			$('.letter').addClass('sender');
+		}, 1000/fadeN);
+	});
+
+	// Yes or no on new sender
+	$('.sender button').on('click', function(e) {
+		e.preventDefault();
+		$('.helper-txt p.active').removeClass('active');
+		$('.letter.sender').removeClass('sender');
+
+		if ( $(this).hasClass('y') ) {
+			window.setTimeout(function() {
+				$('.helper-txt p.sender-wrong').addClass('active');
+			},1000/fadeN);
+		} else {
+			// Check Email Text
+			window.setTimeout(function() {
+				$('.helper-txt p.sender-right').addClass('active');
+			},1000/fadeN);
+		}
+	});
+
+	////////////////////////////////////////////
+	// SECOND PIECE OF ADVICE
+	////////////////////////////////////////////
+
+	// Transition to 2nd piece of advice
+	////////////////////////////////////////////
+	$('a[data-step=2]').on('click', function(e) {
+		e.preventDefault();
+    
+    // Remove the old header
+    $('.header p.active').removeClass('active');
+    $('.header.sender').removeClass('sender');
+    // Remove the old Q/A answer
+		$('.helper-txt p.active').removeClass('active');
+
+		window.setTimeout(function() {
+      // Show the advice header
+			$('.header p.tone').addClass('active');
+			$('.header').addClass('tone');
+
+      // Show the advice body
+			$('.helper-txt p.tone').addClass('active');
+			// $('.letter').addClass('skew');
+		},1000/fadeN);
+	});
+
+	// Yes or no on suspicious tone
+	$('.tone button').on('click', function(e) {
+		e.preventDefault();
+		$('.helper-txt p.active').removeClass('active');
+
+		if ( $(this).hasClass('y') ) {
+			window.setTimeout(function() {
+				$('.helper-txt p.tone-wrong').addClass('active');
+			},1000/fadeN);
+		} else {
+			// Check Email Text
+			window.setTimeout(function() {
+				$('.helper-txt p.tone-right').addClass('active');
+			},1000/fadeN);
+		}
+	});
+
+	////////////////////////////////////////////
+	// THIRD PIECE OF ADVICE
+	////////////////////////////////////////////
+
+	// Transition to 3rd piece of advice
+	////////////////////////////////////////////
+	$('a[data-step=3]').on('click', function(e) {
+		e.preventDefault();
+    
+    // Remove the old header
+    $('.header p.active').removeClass('active');
+    $('.header.tone').removeClass('tone');
+    // Remove the old Q/A answer
+		$('.helper-txt p.active').removeClass('active');
+
+		window.setTimeout(function() {
+      // Show the advice header
+			$('.header p.spelling').addClass('active');
+			$('.header').addClass('spelling');
+
+      // Show the advice body
+			$('.helper-txt p.spelling').addClass('active');
+			$('.letter').addClass('spelling');
+		},1000/fadeN);
+	});
+
+	// Yes or no on spelling
+	$('.spelling button').on('click', function(e) {
+		e.preventDefault();
+		$('.helper-txt p.active').removeClass('active');
+		$('.letter.spelling').removeClass('spelling');
+
+		if ( $(this).hasClass('y') ) {
+			window.setTimeout(function() {
+				$('.helper-txt p.spelling-wrong').addClass('active');
+			},1000/fadeN);
+		} else {
+			// Check Email Text
+			window.setTimeout(function() {
+				$('.helper-txt p.spelling-right').addClass('active');
+			},1000/fadeN);
+		}
+	});
+
+	////////////////////////////////////////////
+	// FOURTH PIECE OF ADVICE
+	////////////////////////////////////////////
+
+	// Transition to 4th piece of advice
+	////////////////////////////////////////////
+	$('a[data-step=4]').on('click', function(e) {
+		e.preventDefault();
+
+    // Remove the old header
+    $('.header p.active').removeClass('active');
+    $('.header.spelling').removeClass('spelling');
+    // Remove the old Q/A answer
+		$('.helper-txt p.active').removeClass('active');
+
+		window.setTimeout(function() {
+      // Show the advice header
+			$('.header p.urgent').addClass('active');
+			$('.header').addClass('urgent');
+
+      // Show the advice body
+			$('.helper-txt p.urgent').addClass('active');
+			$('.letter').addClass('urgent');
+			$('.letter').addClass('skew');
+		},1000/fadeN);
+	});
+
+	// Yes or no on urgency
+	$('.urgent button').on('click', function(e) {
+		e.preventDefault();
+		$('.helper-txt p.active').removeClass('active');
+		$('.letter.urgent').removeClass('urgent');
+		$('.letter.skew').removeClass('skew');
+
+		if ( $(this).hasClass('y') ) {
+			window.setTimeout(function() {
+				$('.helper-txt p.urgent-wrong').addClass('active');
+			},1000/fadeN);
+		} else {
+			// Check Email Text
+			window.setTimeout(function() {
+				$('.helper-txt p.urgent-right').addClass('active');
+			},1000/fadeN);
+		}
+	});
+
+	////////////////////////////////////////////
+	// FIFTH PIECE OF ADVICE
+	////////////////////////////////////////////
+
+	// Transition to 4th piece of advice
+	////////////////////////////////////////////
+	$('a[data-step=5]').on('click', function(e) {
+		e.preventDefault();
+    
+    // Remove the old header
+    $('.header p.active').removeClass('active');
+    $('.header.urgent').removeClass('urgent');
+    // Remove the old Q/A answer
+    $('.helper-txt p.active').removeClass('active');
+
+		window.setTimeout(function() {
+      // Show the advice header
+			$('.header p.action').addClass('active');
+			$('.header').addClass('action');
+
+      // Show the advice body
+			$('.helper-txt p.action').addClass('active');
+			$('.letter').addClass('action');
+		},1000/fadeN);
+	});
+
+	// Yes or no on action
+	$('.action button').on('click', function(e) {
+		e.preventDefault();
+		$('.helper-txt p.active').removeClass('active');
+		$('.letter.action').removeClass('action');
+
+		if ( $(this).hasClass('y') ) {
+			window.setTimeout(function() {
+				$('.helper-txt p.action-wrong').addClass('active');
+			},1000/fadeN);
+		} else {
+			// Check Email Text
+			window.setTimeout(function() {
+				$('.helper-txt p.action-right').addClass('active');
+			},1000/fadeN);
+		}
+	});
+
+////////////////////////////////////////////
+// Parting remark "report it!"
+////////////////////////////////////////////
+
+	// Transition to 4th piece of advice
+	// If they messed up on sender
+	$('a[data-step=6]').on('click', function(e) {
+		e.preventDefault();
+    
+    // Remove the old header
+    $('.header p.active').removeClass('active');
+    $('.header.action').removeClass('action');
+    // Remove the old Q/A answer
+    $('.helper-txt p.active').removeClass('active');
+
+		window.setTimeout(function() {
+			$('.helper-txt p.done').addClass('active');
+			$('.letter').addClass('report');
+		},1000/fadeN);
+	});
+
+////////////////////////////////////////////
+// CONCLUSION
+////////////////////////////////////////////
+
+	// If they messed up on sender
+	$('a[data-step=7]').on('click', function(e) {
+		e.preventDefault();
+		$('.helper-txt p.active').removeClass('active');
+
+		window.setTimeout(function() {
+			$('.letter').addClass('away');
+			$('.summary').addClass('active');
+		}, 500);
+
+	});
+});
+
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $("#logo_object").html("<img src='" + window.account_logo + "' />");
+	});
+</script>
+<script src="https://tslp.s3.amazonaws.com/assets/js/training.js"></script>
+
+</body>
+</html>
