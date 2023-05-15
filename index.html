@@ -766,34 +766,17 @@
   </style>
 
 
-<!--                      BEGIN GOOGLE ANALYTICS INSERT                         -->
-<!-- -------------------------------------------------------------------------- -->
-
-<!-- Redirect for Google Analytics Tracking URL -->
-<script>
-	var month = "01-2023"; // TODO(Change per month): which campaign month it is
-	var training_type = "contextual-interactive";  // TODO(Change per training): which phishing training the user got
-
-	// Redirect the webpage to the same URL w/ parameters for Google Analytics to work
-	if (!window.location.href.includes("utm_source")) {
-		// Get the GUID from training
-		var guid = new RegExp('guid=([^&#]*)').exec(window.location.href)[1];
-		var param_string = "&utm_source=" + month + "&utm_medium=" + training_type + "&utm_campaign=" + guid;
-		window.location.href = window.location.href + param_string;
-	}
-</script>
 
 <!-- Google tag (gtag.js) -->
-<script async src=“https://www.googletagmanager.com/gtag/js?id=G-0SSME39132”></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G01EK5PDND"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-0SSME39132');
+
+  gtag('config', 'G-G01EK5PDND');
 </script>
 
-<!-- -------------------------------------------------------------------------- -->
-<!--                      END GOOGLE ANALYTICS INSERT                         -->
 
 </head>
 <body>
